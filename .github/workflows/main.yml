@@ -1,0 +1,43 @@
+name: Update Data
+
+on:
+  schedule:
+    - cron: "0 12 * * 3"
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies
+      run: pip install -r bin/requirements.txt
+
+    - name: Run Update Script
+      run: python bin/update.py
+
+    - name: Create Branch and Push Changes
+      run: |
+        DATE=$(date +"%d-%m-%Y")
+        BRANCH_NAME="update-data-${DATE}"
+        git config --global user.email "${{ github.repository_owner }}@users.noreply.github.com"
+        git config --global user.name "${{ github.repository_owner }}"
+        git branch $BRANCH_NAME
+        git checkout $BRANCH_NAME
+        git add .
+        git commit -m "${DATE} update"
+        git push origin $BRANCH_NAME
+
+    - name: Create Pull Request
+      run: |
+        DATE=$(date +"%d-%m-%Y")
+        BRANCH_NAME="update-data-${DATE}"
+        gh pr create -B main -H $BRANCH_NAME -t "${DATE} - Update" -b "${DATE} - Update Titled Tuesday results" -r ${{ github.repository_owner }} 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
