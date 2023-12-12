@@ -8,6 +8,8 @@ This repository provides access to the winners of Chess.com's Titled Tuesdays to
 
 - **Older Events:** Later, I discovered the [Chess.com Titled Tuesday Historical Archive](https://www.chess.com/article/view/titled-tuesday-historical-archive), which contains a comprehensive list of older Titled Tuesdays events. Additionally, I've created a list of the tournament links available on [here](https://github.com/cmgchess/Titled-Tuesday-Data/issues/1).
 
+- **PGN Files:** PGN files are available at [chesscom-pgn-archive](https://github.com/rastallian/chesscom-pgn-archive/tree/main/titled-tuesday), courtesy of [rastallian](https://github.com/rastallian).
+
 ## Details
 
 | Tournament List    |
