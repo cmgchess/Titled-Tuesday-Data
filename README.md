@@ -24,3 +24,4 @@ This repository provides access to the winners of Chess.com's Titled Tuesdays to
 | [2021](https://github.com/cmgchess/Titled-Tuesday-Data/blob/main/details/2021.md) |
 | [2022](https://github.com/cmgchess/Titled-Tuesday-Data/blob/main/details/2022.md) |
 | [2023](https://github.com/cmgchess/Titled-Tuesday-Data/blob/main/details/2023.md) |
+| [2024](https://github.com/cmgchess/Titled-Tuesday-Data/blob/main/details/2024.md) |
