@@ -12,22 +12,12 @@ if not os.path.exists("ranks"):
 if not os.path.exists("details"):
     os.makedirs("details")    
 
-gh_link = 'https://github.com/cmgchess/Titled-Tuesday-Data/tree/main/ranks'
-
-r = requests.get(gh_link)
-soup = BeautifulSoup(r.content, 'html.parser')
+gh_link = "https://api.github.com/repos/cmgchess/Titled-Tuesday-Data/git/trees/main?recursive=1"
+response = requests.get(gh_link)
+data = response.json()
 print("started")
 
-v = str(soup)
-data_dict = json.loads(v)
-items = data_dict['payload']['tree']['items']
-
-file_names = []
-for x in items:
-  text = x['name']
-  text = text.replace('.json', '')
-  if text != "scrapers" and text != "README.md" and text != "LICENSE" and text != "details":
-    file_names.append(text)
+file_names = [obj["path"].replace("ranks/", "").replace(".json", "") for obj in data["tree"] if obj["path"].startswith("ranks/")]
 
 base_url = 'https://www.chess.com/tournament/live/'
 
