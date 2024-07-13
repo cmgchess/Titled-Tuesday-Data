@@ -10,7 +10,7 @@ This repository provides access to the winners of Chess.com's Titled Tuesdays to
 
 - **PGN Files:** PGN files are available [here](https://chessnerd.net/pgn/chesscom/titled-tuesday/), courtesy of [chessnerd.net](https://chessnerd.net/).
 
-- I have also written a [Python script](https://gist.github.com/cmgchess/1c18df5801184a54355b1bdeb0dceac4) to fetch games from a tournament. However, I encountered some rare situations where certain games were not successfully fetched.
+- I have also written a [Python script](https://gist.github.com/cmgchess/1c18df5801184a54355b1bdeb0dceac4) to fetch games from a tournament.
 
 ## Details
 
