@@ -32,7 +32,7 @@ for i in range(1):
   for j in tourn_table_rows:
     tourn_link = j.find('a', class_='tournaments-live-name')['href']
     tourn_links.append(tourn_link)
-tourn_links = ['https://www.chess.com/tournament/live/late-titled-tuesday-blitz-december-10-2024-5267925','https://www.chess.com/tournament/live/early-titled-tuesday-blitz-december-10-2024-5267921']
+tourn_links = ['https://www.chess.com/tournament/live/late-titled-tuesday-blitz-december-10-2024-5267925','https://www.chess.com/tournament/live/early-titled-tuesday-blitz-december-10-2024-5267921'] + tourn_links
 for url in tourn_links:
   parts = url.split('/')
   tournament_id = parts[-1]
