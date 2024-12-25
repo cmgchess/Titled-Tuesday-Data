@@ -115,7 +115,7 @@ for i in last_and_current:
   formatted_time = parsed_date.strftime("%I:%M %p").replace('\u202f', ' ')
 
   #winners
-  winner_section = soup.find('div', class_='v5-section-content-wide tournaments-live-view-players')
+  winner_section = soup.find('div', class_='v5-section-content tournaments-live-view-players')
   winners_items = winner_section.find_all('div', class_='tournaments-winners-item')
   winners_data = winner_section.find_all('div',class_='post-view-meta-component tournaments-winners-details')
   first_place_winners = []
