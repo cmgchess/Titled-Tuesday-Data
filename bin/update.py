@@ -156,8 +156,9 @@ custom_headers = {
 }
 headers = ['Title', 'Number of Players', 'Date', 'Time', 'Winner', 'Tournament Link', 'Rank List']
 
-entries = grouped_data[current_year]
-file_name = f"{current_year}.md"
+max_year = max(grouped_data.keys())
+entries = grouped_data[max_year]
+file_name = f"{max_year}.md"
 entries_with_custom_names = [{custom_headers.get(col, col): value for col, value in entry.items()} for entry in entries]
 for entry in entries_with_custom_names:
   if 'Title' in entry:
