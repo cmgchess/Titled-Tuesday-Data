@@ -103,7 +103,7 @@ events = []
 for i in last_and_current:
   r = requests.get(base_url+i)
   soup = BeautifulSoup(r.content, 'html.parser')
-  name_el = soup.find('h1', class_='v5-title-label')
+  name_el = soup.find('h1', class_='cc-page-header-title')
   name = name_el.get_text().strip()
   print("processing: " + name)
   stats_el = soup.find('div', class_='tournaments-live-view-content-stats')
