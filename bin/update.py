@@ -61,7 +61,7 @@ for url in tourn_links:
       rank +=1
       if rank%100 == 0:
         print("completed: "+str(rank))
-      username = x.select_one('.user-tagline-username').get_text(strip=True)
+      username = x.select_one('.cc-user-username-component').get_text(strip=True)
       country = x.select_one('.country-flags-component')['v-tooltip']
       rating = x.select_one('.user-rating').get_text(strip=True).replace('(','').replace(')','')
       if (rating != 'Unrated'):
@@ -117,12 +117,12 @@ for i in last_and_current:
   #winners
   winner_section = soup.find('div', class_='cc-section-content tournaments-live-view-players')
   winners_items = winner_section.find_all('div', class_='tournaments-winners-item')
-  winners_data = winner_section.find_all('div',class_='post-view-meta-component tournaments-winners-details')
+  winners_data = winner_section.find_all('div',class_='tournaments-winners-details')
   first_place_winners = []
   for idx,item in enumerate(winners_items):
     place = item.find('div', class_='tournaments-winners-box').get_text(strip=True)
     if place == '1st Place':
-        winner = winners_data[idx].find('a', class_='user-username-component').get_text(strip=True)
+        winner = winners_data[idx].find('a', class_='cc-user-username-component').get_text(strip=True)
         first_place_winners.append(winner)
   #assume something wrong with the event
   if len(first_place_winners) > 10:
