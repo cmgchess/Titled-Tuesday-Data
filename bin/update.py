@@ -69,7 +69,8 @@ for url in tourn_links:
       title_element = x.select_one('.post-view-meta-title')
       title = title_element.get_text(strip=True) if title_element is not None else None
       score = float(x.select_one('.tournaments-live-view-total-score').get_text(strip=True))
-      tie_break = float(x.select_one('.tournaments-live-view-tie-break').get_text(strip=True))
+      all_tie_breaks = x.find_all('td')[-7:] #["Buchholz Cut 1", "Buchholz", "Sonneborn-Berger", "Direct encounter", "The greater number of wins including forfeits", "Number of wins with Black pieces", "AROC 1"]
+      tie_break = float(all_tie_breaks[0].get_text(strip=True)) # historically we've been storing Buchholz Cut 1 only
       wdb = x.find('div', class_='tournaments-live-view-total-score')['v-tooltip'].split(',')
       wins = int(wdb[0].strip().split()[0])
       draws = int(wdb[1].strip().split()[0])
