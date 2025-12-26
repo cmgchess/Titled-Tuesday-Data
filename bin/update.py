@@ -66,7 +66,7 @@ for url in tourn_links:
       rating = x.select_one('.user-rating').get_text(strip=True).replace('(','').replace(')','')
       if (rating != 'Unrated'):
         rating = int(rating)
-      title_element = x.select_one('.post-view-meta-title')
+      title_element = x.select_one('.cc-user-title-component')
       title = title_element.get_text(strip=True) if title_element is not None else None
       score = float(x.select_one('.tournaments-live-view-total-score').get_text(strip=True))
       all_tie_breaks = x.find_all('td')[-7:] #["Buchholz Cut 1", "Buchholz", "Sonneborn-Berger", "Direct encounter", "The greater number of wins including forfeits", "Number of wins with Black pieces", "AROC 1"]
