@@ -62,7 +62,7 @@ for url in tourn_links:
       if rank%100 == 0:
         print("completed: "+str(rank))
       username = x.select_one('.cc-user-username-component').get_text(strip=True)
-      country = x.select_one('.country-flags-component')['v-tooltip']
+      country = x.select_one('.cc-country-flag-component')['v-tooltip']
       rating = x.select_one('.user-rating').get_text(strip=True).replace('(','').replace(')','')
       if (rating != 'Unrated'):
         rating = int(rating)
