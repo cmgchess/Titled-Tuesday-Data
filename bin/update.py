@@ -12,6 +12,24 @@ if not os.path.exists("ranks"):
 if not os.path.exists("details"):
     os.makedirs("details")    
 
+headers = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/139.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+def get_page(url):
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+
+    print(f"GET {url} -> {r.status_code} ({len(r.content)} bytes)")
+
+    return r
+
 gh_link = "https://api.github.com/repos/cmgchess/Titled-Tuesday-Data/git/trees/main?recursive=1"
 response = requests.get(gh_link)
 data = response.json()
@@ -24,7 +42,7 @@ base_url = 'https://www.chess.com/tournament/live/'
 tt = 'https://www.chess.com/tournament/live/titled-tuesdays'
 tourn_links = []
 for i in range(1):
-  r = requests.get(tt+'?&page='+str(i+1))
+  r = get_page(tt+'?&page='+str(i+1))
   soup = BeautifulSoup(r.content, 'html.parser')
   tourn_list = soup.find('table', class_ = 'table-component table-hover table-clickable tournaments-live-table')
   tourn_table_rows = tourn_list.find_all('tr')
@@ -40,7 +58,7 @@ for url in tourn_links:
   if tournament_id in file_names:
     print("File already exists: " + tournament_id)
     continue
-  r = requests.get(url+'?&players=100')
+  r = get_page(url+'?&players=100')
   soup = BeautifulSoup(r.content, 'html.parser')
   i_p = soup.find('div', class_ = 'index-pagination')
   data_total_pages = 0
@@ -52,7 +70,7 @@ for url in tourn_links:
   rank = 0
   for i in range(data_total_pages):
     print('page: ' + str(i+1))
-    r = requests.get(url+'?&players='+str(i+1))
+    r = get_page(url+'?&players='+str(i+1))
     soup = BeautifulSoup(r.content, 'html.parser')
     table = soup.find('table', class_ = 'table-component tournaments-live-view-results-table tournaments-live-view-extra-borders')
     table_rows = table.find_all('tr')
@@ -102,7 +120,7 @@ last_and_current = [filename for filename in file_names if str(current_year) in 
 
 events = []
 for i in last_and_current:
-  r = requests.get(base_url+i)
+  r = get_page(base_url+i)
   soup = BeautifulSoup(r.content, 'html.parser')
   name_el = soup.find('h1', class_='cc-page-header-title')
   name = name_el.get_text().strip()
