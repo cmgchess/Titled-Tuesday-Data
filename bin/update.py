@@ -50,7 +50,7 @@ for i in range(1):
   for j in tourn_table_rows:
     tourn_link = j.find('a', class_='tournaments-live-name')['href']
     tourn_links.append(tourn_link)
-
+tourn_links.append("https://www.chess.com/tournament/live/titled-tuesday-blitz-october-20-2026-31175863")
 for url in tourn_links:
   parts = url.split('/')
   tournament_id = parts[-1]
